@@ -12,11 +12,9 @@ export const QrCodeScanner = () => {
 
       const prevData = JSON.parse(localStorage.getItem(SCAN_DATA) || '[]')
 
-      console.log('prevData', prevData.includes(result.text))
 
       if(prevData.includes(result.text)) return
 
-      console.log('result', result)
       setScanned(result.text)
 
 
@@ -29,6 +27,7 @@ export const QrCodeScanner = () => {
     return(
       <div className={s.container}>
         <QrReader
+        constraints={{ facingMode: 'environment' }}
         scanDelay={1000}
         onResult={scanHandler}
         containerStyle={{ width: '500px' }}
